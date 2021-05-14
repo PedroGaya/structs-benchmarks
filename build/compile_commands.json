@@ -1,0 +1,27 @@
+[
+{
+  "directory": "C:/Users/pedro/Downloads/TrabFinal/build",
+  "command": "C:/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe   -g -o CMakeFiles/log.dir/src/log/log.c/src/log.c.obj -c C:/Users/pedro/Downloads/TrabFinal/src/log/log.c/src/log.c",
+  "file": "C:/Users/pedro/Downloads/TrabFinal/src/log/log.c/src/log.c"
+},
+{
+  "directory": "C:/Users/pedro/Downloads/TrabFinal/build",
+  "command": "C:/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe   -g -o CMakeFiles/random.dir/src/data_gen/mtwister/mtwister.c.obj -c C:/Users/pedro/Downloads/TrabFinal/src/data_gen/mtwister/mtwister.c",
+  "file": "C:/Users/pedro/Downloads/TrabFinal/src/data_gen/mtwister/mtwister.c"
+},
+{
+  "directory": "C:/Users/pedro/Downloads/TrabFinal/build",
+  "command": "C:/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe   -g -o CMakeFiles/data_gen.dir/src/data_gen/db.c.obj -c C:/Users/pedro/Downloads/TrabFinal/src/data_gen/db.c",
+  "file": "C:/Users/pedro/Downloads/TrabFinal/src/data_gen/db.c"
+},
+{
+  "directory": "C:/Users/pedro/Downloads/TrabFinal/build",
+  "command": "C:/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe   -g -o CMakeFiles/lse.dir/src/models/LSE/lse.c.obj -c C:/Users/pedro/Downloads/TrabFinal/src/models/LSE/lse.c",
+  "file": "C:/Users/pedro/Downloads/TrabFinal/src/models/LSE/lse.c"
+},
+{
+  "directory": "C:/Users/pedro/Downloads/TrabFinal/build",
+  "command": "C:/msys64/mingw64/bin/x86_64-w64-mingw32-gcc.exe   -g -o CMakeFiles/trabFinal.dir/src/main.c.obj -c C:/Users/pedro/Downloads/TrabFinal/src/main.c",
+  "file": "C:/Users/pedro/Downloads/TrabFinal/src/main.c"
+}
+]

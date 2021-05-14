@@ -1,0 +1,95 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "trabFinal",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "data_gen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-data_gen-Debug-3dbc674325862d40fc9e.json",
+					"name" : "data_gen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "log::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-log-Debug-aae575730b076f7541dd.json",
+					"name" : "log",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lse::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lse-Debug-4399968f267556b00c15.json",
+					"name" : "lse",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "random::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-random-Debug-4c519078015f3b0db0ee.json",
+					"name" : "random",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "trabFinal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-trabFinal-Debug-4c3826f46e75cc1115ad.json",
+					"name" : "trabFinal",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/pedro/Downloads/TrabFinal/build",
+		"source" : "C:/Users/pedro/Downloads/TrabFinal"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

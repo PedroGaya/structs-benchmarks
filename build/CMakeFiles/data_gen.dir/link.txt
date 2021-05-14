@@ -1,0 +1,2 @@
+C:/msys64/mingw64/bin/ar.exe qc libdata_gen.a CMakeFiles/data_gen.dir/src/data_gen/db.c.obj
+C:/msys64/mingw64/bin/ranlib.exe libdata_gen.a
