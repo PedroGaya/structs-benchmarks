@@ -1,2 +1,0 @@
-C:/msys64/mingw64/bin/ar.exe qc liblse.a CMakeFiles/lse.dir/src/models/LSE/lse.c.obj
-C:/msys64/mingw64/bin/ranlib.exe liblse.a

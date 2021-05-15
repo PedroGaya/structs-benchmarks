@@ -1,2 +1,0 @@
-C:/msys64/mingw64/bin/ar.exe qc libmt.a CMakeFiles/mt.dir/src/data_gen/mtwister/mtwister.c.obj
-C:/msys64/mingw64/bin/ranlib.exe libmt.a

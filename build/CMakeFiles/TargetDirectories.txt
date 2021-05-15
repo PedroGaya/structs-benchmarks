@@ -1,7 +1,0 @@
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/log.dir
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/trabFinal.dir
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/data_gen.dir
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/lse.dir
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/random.dir
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/edit_cache.dir
-C:/Users/pedro/Downloads/TrabFinal/build/CMakeFiles/rebuild_cache.dir

@@ -1,2 +1,0 @@
-C:/msys64/mingw64/bin/ar.exe qc librandom.a CMakeFiles/random.dir/src/data_gen/mtwister/mtwister.c.obj
-C:/msys64/mingw64/bin/ranlib.exe librandom.a
