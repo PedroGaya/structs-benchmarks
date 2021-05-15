@@ -83,36 +83,24 @@ int destroy_LSE(LSE* list)
   }
 }
 
-int find_LSE(int input, LSE* list) {
-  if (list == NULL) { printf("List is NULL\n"); return -1; };
-  if (list->start == NULL) { printf("Empty list\n"); return -1; };
+int find_LSE(int input, LSE* list, int* ops_counter) {
+  if (list == NULL) { printf("List is NULL\n"); return 0; };
+  if (list->start == NULL) { printf("Empty list\n"); return 0; };
 
   ptLSE* head = list->start;
+  int curr_ops = 1;
 
   while(head->numero != input) {
     head = head->prox;
 
+    curr_ops++;
     if (head == list->start) {
-      printf("Not found\n");
-      return -1;
+      return 0;
     }
+
+    curr_ops++;
   };
-
-  printf("Listando pelo próximo: ");
-  do {
-    printf("%d ", head->numero);
-    head = head->prox;
-  } while(head->numero != input);
-  printf("\n");
-
-  printf("Listando pelo anterior: ");
-  do {
-    printf("%d ", head->numero);
-    head = head->ant;
-  } while(head->numero != input);
-  printf("\n");
-
-  return 0;
+  return 1;
 }
 
 void benchmark_LSE(int* data, int data_size, int is_random) {
@@ -144,7 +132,7 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
 
   // Now we consult according to specification.
 
-  long consult_ops;
+  int consult_ops;
   int consult_array[5] = {0,0,0,0,0};
 
   if (is_random) {
@@ -158,14 +146,28 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
     }
   }
 
-  clock_t consult_start = clock();
-
   for (int i = 0; i < 5; i++) {
     int val = consult_array[i];
 
-    if(val != 0) {
-      find_LSE(val, list);
+    if (val != 0) {
+      clock_t consult_start = clock();
+      find_LSE(val, list, &consult_ops);
+      consult_array[i] = (int)(clock() - consult_start) / (CLOCKS_PER_SEC / 1000);
     }
+  }
+
+  int consult_time;
+  if (is_random) {
+    for (int i = 0; i < 5; i++) {
+      consult_time += consult_array[i] / 5;
+    }
+
+    log_info("CONSULT LSEC|%s|%li|%lims|%dops\n", 
+      (is_random ? "randomized" : "ordered"), data_size, consult_time, consult_ops);
+  } else {
+    log_info("CONSULT LSEC|%s|%li|%lims|%lims|%lims|%dops\n", 
+      (is_random ? "randomized" : "ordered"), data_size, consult_array[0], 
+      consult_array[1], consult_array[2], consult_ops);
   }
 
 };
