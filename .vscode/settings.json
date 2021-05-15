@@ -4,5 +4,6 @@
         "db.h": "c",
         "log.h": "c",
         "stdlib.h": "c"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

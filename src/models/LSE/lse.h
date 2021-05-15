@@ -13,9 +13,9 @@ struct LSE {
 };
 
 LSE* init_LSE(void);
-ptLSE* insert_ptLSE(int input, LSE* list, int* ops_counter);
+ptLSE* insert_ptLSE(int input, LSE* list, long* ops_counter);
 int destroy_LSE(LSE* list);
 int show_LSE(LSE* list);
-int find_LSE(int input, LSE* list, int* ops_counter);
+int find_LSE(int input, LSE* list, long* ops_counter);
 
 void benchmark_LSE(int* data, int data_size, int is_random);

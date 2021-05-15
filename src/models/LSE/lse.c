@@ -19,14 +19,14 @@ LSE* init_LSE(void)
   return list;
 };
 
-ptLSE* insert_ptLSE(int input, LSE* list, int* ops_counter)
+ptLSE* insert_ptLSE(int input, LSE* list, long* ops_counter)
 {
        ptLSE* novo;
        novo = (ptLSE*) malloc(sizeof(ptLSE));
 
        novo->numero = input;
 
-       int curr_ops = 0;
+       long curr_ops = 0;
       
        curr_ops += 1;
        if (input == 0) return NULL;
@@ -83,12 +83,12 @@ int destroy_LSE(LSE* list)
   }
 }
 
-int find_LSE(int input, LSE* list, int* ops_counter) {
+int find_LSE(int input, LSE* list, long* ops_counter) {
   if (list == NULL) { printf("List is NULL\n"); return 0; };
   if (list->start == NULL) { printf("Empty list\n"); return 0; };
 
   ptLSE* head = list->start;
-  int curr_ops = 1;
+  long curr_ops = 1;
 
   while(head->numero != input) {
     head = head->prox;
@@ -100,6 +100,8 @@ int find_LSE(int input, LSE* list, int* ops_counter) {
 
     curr_ops++;
   };
+
+  *ops_counter += curr_ops;
   return 1;
 }
 
@@ -114,7 +116,7 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
 
   // Start by inserting into the list.
 
-  int insert_ops;
+  long insert_ops;
   clock_t insert_start = clock();
 
   printf("Inserting into list...\n");
@@ -127,45 +129,48 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
 
   long insert_time = (long)(clock() - insert_start) / (CLOCKS_PER_SEC / 1000);
 
-  log_info("INSERT LSEC|%s|%li|%lims|%dops\n", 
+  log_info("INSERT LSEC|%s|%li|%lims|%liops\n", 
    (is_random ? "randomized" : "ordered"), data_size, insert_time, insert_ops);
 
   // Now we consult according to specification.
 
-  int consult_ops;
-  int consult_array[5] = {0,0,0,0,0};
+  long consult_ops = 0;
+  long consult_array[5] = {0,0,0,0,0};
 
-  if (is_random) {
+  if (!is_random) {
     consult_array[0] = 1;
-    consult_array[1] = data_size;
+    consult_array[1] = data_size - 1;
     consult_array[2] = data_size / 2;
   } else {
     MTRand r = seedRand(clock());
     for (int i = 0; i < 5; i++) {
-      consult_array[i] = (int)(genRand(&r) * data_size) + 1;
+      long to_consult = (long)(genRand(&r) * data_size) + 1;
+      consult_array[i] = to_consult;
     }
   }
 
   for (int i = 0; i < 5; i++) {
-    int val = consult_array[i];
+    long val = consult_array[i];
 
     if (val != 0) {
       clock_t consult_start = clock();
-      find_LSE(val, list, &consult_ops);
-      consult_array[i] = (int)(clock() - consult_start) / (CLOCKS_PER_SEC / 1000);
+      if (!find_LSE(val, list, &consult_ops)) { log_error("Something went wrong while consulting.\n");}
+      long consult_time_curr = (long)(clock() - consult_start) / (CLOCKS_PER_SEC / 1000);
+      consult_array[i] = consult_time_curr;
     }
   }
 
-  int consult_time;
+  long consult_time = 0;
   if (is_random) {
     for (int i = 0; i < 5; i++) {
-      consult_time += consult_array[i] / 5;
+      consult_time += consult_array[i];
     }
+    consult_time = consult_time / 5;
 
-    log_info("CONSULT LSEC|%s|%li|%lims|%dops\n", 
+    log_info("CONSULT LSEC|%s|%d|%lims(mean)|%dops\n", 
       (is_random ? "randomized" : "ordered"), data_size, consult_time, consult_ops);
   } else {
-    log_info("CONSULT LSEC|%s|%li|%lims|%lims|%lims|%dops\n", 
+    log_info("CONSULT LSEC|%s|%d|%lims|%lims|%lims|%liops\n", 
       (is_random ? "randomized" : "ordered"), data_size, consult_array[0], 
       consult_array[1], consult_array[2], consult_ops);
   }
