@@ -1,5 +1,6 @@
-#Build folder
+# Generated folders
 build/*
+logs/*
 
 # Prerequisites
 *.d
