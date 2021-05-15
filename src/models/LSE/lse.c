@@ -40,50 +40,10 @@ ptLSE* insert_ptLSE(int input, LSE* list, int* ops_counter)
          return list->start;
        }
        
-       curr_ops += 1;
-       if (input > 0) {
-         novo->prox = list->start;
-         novo->ant = list->start->ant;
-
-         novo->ant->prox = novo;
-         list->start->ant = novo;
-
-         curr_ops += 1;
-         if (input % 2 == 0) {
-           list->start = novo;
-         } else {
-           list->start = novo->prox;
-         };
-         
-       } else {
-        int pos = list->size / 2;
-        ptLSE* head = list->start;
-
-        curr_ops += 1;
-        if (pos == 0) {
-          list->start = novo;
-          novo->prox = head;
-          novo->ant = head->ant;
-
-          head->ant->prox = novo;
-          head->ant = novo;
-
-        } else {
-          int curr = 0;
-
-          while (curr != pos - 1) {
-            curr_ops += 1;
-            head = head->prox;
-            curr++;
-          };
-
-          novo->prox = head->prox;
-          novo->ant = head;
-
-          head->prox->ant = novo;
-          head->prox = novo;
-        }
-       }
+       novo->prox = list->start;
+       novo->ant = list->start->ant;
+       list->start->ant->prox = novo;
+       list->start->ant = novo;
 
        list->size++;
 
