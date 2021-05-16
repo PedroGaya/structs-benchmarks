@@ -5,6 +5,7 @@
 
 #include "data_gen/db.h"
 #include "models/LSE/lse.h"
+#include "models/ABP/abp.h"
 
 int main(int argc, char *argv[]) {
     bool isRandom = false;
@@ -31,4 +32,5 @@ int main(int argc, char *argv[]) {
 
     int* array = generate_DB(svalue, isRandom);
     benchmark_LSE(array, svalue, isRandom);
-}
+    benchmark_ABP(array, svalue, isRandom);
+    }

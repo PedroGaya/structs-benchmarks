@@ -14,6 +14,12 @@ add_library(
 )
 
 add_library(
+    abp
+    src/models/ABP/abp.c
+    src/models/ABP/abp.h
+)
+
+add_library(
     lse
     src/models/LSE/lse.c
     src/models/LSE/lse.h
@@ -27,15 +33,20 @@ add_library(
 
 add_executable(trabFinal src/main.c)
 
-target_link_libraries(trabFinal 
-    PRIVATE data_gen
-    PRIVATE lse
+target_link_libraries(lse 
+    PRIVATE log
 )
 
-target_link_libraries(lse 
+target_link_libraries(abp 
     PRIVATE log
 )
 
 target_link_libraries(data_gen 
     PRIVATE random
+)
+
+target_link_libraries(trabFinal 
+    PRIVATE data_gen
+    PRIVATE lse
+    PRIVATE abp
 )

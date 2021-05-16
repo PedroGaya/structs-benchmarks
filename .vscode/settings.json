@@ -3,7 +3,9 @@
         "stdio.h": "c",
         "db.h": "c",
         "log.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "conio.h": "c",
+        "mtwister.h": "c"
     },
     "cmake.configureOnOpen": false
 }
