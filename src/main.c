@@ -6,6 +6,7 @@
 #include "data_gen/db.h"
 #include "models/LSE/lse.h"
 #include "models/ABP/abp.h"
+#include "log/log.c/src/log.h"
 
 int main(int argc, char *argv[]) {
     bool isRandom = false;
@@ -30,7 +31,13 @@ int main(int argc, char *argv[]) {
         }
     };
 
+    FILE* output = fopen("../logs/logs.txt", "a");
+    log_add_fp(output, LOG_TRACE);
+
+
     int* array = generate_DB(svalue, isRandom);
     benchmark_LSE(array, svalue, isRandom);
     benchmark_ABP(array, svalue, isRandom);
+
+    fclose(output);
     }

@@ -106,13 +106,7 @@ int find_LSE(int input, LSE* list, long* ops_counter) {
 }
 
 void benchmark_LSE(int* data, int data_size, int is_random) {
-  // Setup for storing benchmarks.
-
-  FILE* output = fopen("../logs/lse_benchmark.txt", "a");
-  log_add_fp(output, LOG_TRACE);
-
   LSE* list = init_LSE();
-
 
   // Start by inserting into the list.
 

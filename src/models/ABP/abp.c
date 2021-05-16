@@ -51,11 +51,6 @@ pNodoA* consultaABP(pNodoA *a, int chave, long* consult_ops) {
 }
 
 void benchmark_ABP(int* data, int data_size, int is_random) {
-  // Setup for storing benchmarks.
-
-  FILE* output = fopen("../logs/abp_benchmark.txt", "a");
-  log_add_fp(output, LOG_TRACE);
-
   pNodoA* root = NULL;
 
   // Start by inserting into the list.

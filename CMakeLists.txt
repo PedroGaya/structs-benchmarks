@@ -47,6 +47,7 @@ target_link_libraries(data_gen
 
 target_link_libraries(trabFinal 
     PRIVATE data_gen
+    PRIVATE log
     PRIVATE lse
     PRIVATE abp
 )
