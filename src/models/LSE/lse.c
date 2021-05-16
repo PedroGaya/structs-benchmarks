@@ -86,9 +86,9 @@ int destroy_LSE(LSE* list)
 int find_LSE(int input, LSE* list, long* ops_counter) {
   if (list == NULL) { printf("List is NULL\n"); return 0; };
   if (list->start == NULL) { printf("Empty list\n"); return 0; };
-
+  
   ptLSE* head = list->start;
-  long curr_ops = 1;
+  long curr_ops = 3;
 
   while(head->numero != input) {
     head = head->prox;
