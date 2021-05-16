@@ -25,13 +25,11 @@ ptLSE* insert_ptLSE(int input, LSE* list, long* ops_counter)
        novo = (ptLSE*) malloc(sizeof(ptLSE));
 
        novo->numero = input;
-
-       long curr_ops = 0;
       
-       curr_ops += 1;
+       *ops_counter += 1;
        if (input == 0) return NULL;
        
-       curr_ops += 1;
+       *ops_counter += 1;
        if (list->start == NULL) {
          list->start = novo;
          novo->prox = novo;
@@ -47,7 +45,6 @@ ptLSE* insert_ptLSE(int input, LSE* list, long* ops_counter)
 
        list->size++;
 
-       *ops_counter += curr_ops;
        return list->start;
 }
 
@@ -110,7 +107,7 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
 
   // Start by inserting into the list.
 
-  long insert_ops;
+  long insert_ops = 0;
   clock_t insert_start = clock();
 
   printf("Inserting into list...\n");
@@ -125,6 +122,16 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
 
   log_info("INSERT LSEC|%s|%li|%lims|%liops\n", 
    (is_random ? "randomized" : "ordered"), data_size, insert_time, insert_ops);
+
+  if (is_random) {
+    FILE* insert_output = fopen("../logs/lsec_benchmarks/insert/random.txt", "a");
+    fprintf(insert_output, "%d|%li|%d\n", data_size, insert_time, insert_ops);
+    fclose(insert_output);
+  } else {
+    FILE* insert_output = fopen("../logs/lsec_benchmarks/insert/ordered.txt", "a");
+    fprintf(insert_output, "%d|%li|%d\n", data_size, insert_time, insert_ops);
+    fclose(insert_output);
+  }
 
   // Now we consult according to specification.
 
@@ -163,10 +170,19 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
 
     log_info("CONSULT LSEC|%s|%d|%lims(mean)|%dops\n", 
       (is_random ? "randomized" : "ordered"), data_size, consult_time, consult_ops);
+
+    FILE* consult_output = fopen("../logs/lsec_benchmarks/consult/random.txt", "a");
+    fprintf(consult_output, "%d|%li|%d\n", data_size, consult_time, consult_ops);
+    fclose(consult_output);
   } else {
     log_info("CONSULT LSEC|%s|%d|%lims|%lims|%lims|%liops\n", 
       (is_random ? "randomized" : "ordered"), data_size, consult_array[0], 
       consult_array[1], consult_array[2], consult_ops);
+
+    FILE* consult_output = fopen("../logs/lsec_benchmarks/consult/ordered.txt", "a");
+    fprintf(consult_output, "%d|%li|%li|%li|%d\n", data_size, 
+      consult_array[0], consult_array[1], consult_array[2], consult_ops);
+    fclose(consult_output);
   }
 
 };

@@ -71,6 +71,18 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
   log_info("INSERT ABP|%s|%li|%lims|%liops\n", 
    (is_random ? "randomized" : "ordered"), data_size, insert_time, insert_ops);
 
+  if (is_random) {
+    FILE* insert_output = fopen("../logs/abp_benchmarks/insert/random.txt", "a");
+    fprintf(insert_output, "%d|%li|%d\n", data_size, insert_time, insert_ops);
+    fclose(insert_output);
+  } else {
+    FILE* insert_output = fopen("../logs/abp_benchmarks/insert/ordered.txt", "a");
+    fprintf(insert_output, "%d|%li|%d\n", data_size, insert_time, insert_ops);
+    fclose(insert_output);
+  }
+
+  
+
   // Now we consult according to specification.
   
 
@@ -107,12 +119,21 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
     }
     consult_time = consult_time / 5;
 
-    log_info("CONSULT ABP|%s|%d|%lims(mean)|%dops\n", 
-      (is_random ? "randomized" : "ordered"), data_size, consult_time, consult_ops);
+    log_info("CONSULT ABP|%s|%d|%lims(mean)|%dops\n", "randomized", data_size, consult_time, consult_ops);
+
+    FILE* consult_output = fopen("../logs/abp_benchmarks/consult/random.txt", "a");
+    fprintf(consult_output, "%d|%li|%d\n", data_size, consult_time, consult_ops);
+    fclose(consult_output);
+
   } else {
     log_info("CONSULT ABP|%s|%d|%lims|%lims|%lims|%liops\n", 
-      (is_random ? "randomized" : "ordered"), data_size, consult_array[0], 
+      "ordered", data_size, consult_array[0], 
       consult_array[1], consult_array[2], consult_ops);
+
+    FILE* consult_output = fopen("../logs/abp_benchmarks/consult/ordered.txt", "a");
+    fprintf(consult_output, "%d|%li|%li|%li|%d\n", data_size, 
+      consult_array[0], consult_array[1], consult_array[2], consult_ops);
+    fclose(consult_output);
   }
 
 };
