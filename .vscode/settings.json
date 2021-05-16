@@ -1,11 +1,12 @@
 {
-    "files.associations": {
-        "stdio.h": "c",
-        "db.h": "c",
-        "log.h": "c",
-        "stdlib.h": "c",
-        "conio.h": "c",
-        "mtwister.h": "c"
-    },
-    "cmake.configureOnOpen": false
+	"files.associations": {
+		"stdio.h": "c",
+		"db.h": "c",
+		"log.h": "c",
+		"stdlib.h": "c",
+		"conio.h": "c",
+		"mtwister.h": "c"
+	},
+	"cmake.configureOnOpen": false,
+	"python.analysis.extraPaths": ["c:/python39/lib/site-packages"]
 }
