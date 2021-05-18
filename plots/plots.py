@@ -67,6 +67,7 @@ def make_scatter(raw_data, size, color, marker='o'):
         return {
             5000: 100,
             10000: 200,
+            100000: 300
         }[x]
     
     for element in raw_data:
@@ -93,6 +94,7 @@ ax.set_ylabel('Operations')
 ax.set_xlabel('Time (ms)')
 
 ax.set_yscale('log')
+ax.set_xscale('log')
 
 random_abp_legend = mlines.Line2D([], [], color='#D90000', marker='o', linestyle='None',
                           markersize=10, label='Random ABP data.')
