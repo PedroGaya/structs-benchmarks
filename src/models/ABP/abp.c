@@ -5,6 +5,13 @@
 #include "../../log/log.c/src/log.h"
 #include "../../data_gen/mtwister/mtwister.h"
 
+pNodoA* create_node(int data) {
+    pNodoA* n = calloc(1, sizeof(pNodoA));
+    n->info = data;
+    n->dir = n->esq = NULL;
+    return n;
+}
+
 pNodoA* InsereArvore(pNodoA *a, int ch, long* insert_ops)
 {
      if (a == NULL)
@@ -28,32 +35,42 @@ pNodoA* InsereArvore(pNodoA *a, int ch, long* insert_ops)
      return a;
 }
 
-pNodoA* consultaABP(pNodoA *a, int chave, long* consult_ops) {
-    if (a!=NULL) {
-       if (a->info == chave) {
-         *consult_ops += 1;
-         return a;
-       }
-       else {
-           if (a->info > chave) {
-                *consult_ops += 1;
-                return consultaABP(a->esq,chave,consult_ops);
-           }
-            if (a->info < chave) {
-                *consult_ops += 1;
-                return consultaABP(a->dir,chave,consult_ops);
-            }
+pNodoA* BST_insert_iterative(pNodoA* root, int data, long* insert_ops) {
+    pNodoA **pp = &root;
 
-            else return a;
-       }
+    while (*pp != NULL) {
+        *insert_ops += 2;
+        if (data > (*pp)->info)
+            pp = &(*pp)->dir;
+        else
+            pp = &(*pp)->esq;
     }
-       else return NULL;
+    *pp = create_node(data);
+    return root;
+}
+
+int consultaABP(pNodoA *a, int chave, long* consult_ops) {
+  pNodoA* temp = a;
+
+    while (temp != NULL) {
+        *consult_ops += 2;
+        if (chave > temp->info)
+            temp = temp->dir;
+  
+        else if (chave < temp->info) {
+            *consult_ops += 1;
+            temp = temp->esq;
+        }
+        else {
+          *consult_ops += 1;
+          return 1;
+        } 
+    }
+    return 0;
 }
 
 void benchmark_ABP(int* data, int data_size, int is_random) {
   pNodoA* root = NULL;
-
-  // Start by inserting into the list.
 
   long insert_ops = 0;
   clock_t insert_start = clock();
@@ -62,7 +79,7 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
   for (int i = 0; i < data_size; i++) {
     printf("\r%d of %d done.", i+1, data_size);
     fflush(stdout);
-    root = InsereArvore(root, data[i], &insert_ops);
+    root = BST_insert_iterative(root, data[i], &insert_ops);
   };
   printf("\n");
 
@@ -81,10 +98,7 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
     fclose(insert_output);
   }
 
-  
-
   // Now we consult according to specification.
-  
 
   long consult_ops = 0;
   long consult_array[5] = {0,0,0,0,0};
@@ -105,8 +119,8 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
     long val = consult_array[i];
     if (val != 0) {
       clock_t consult_start = clock();
-      pNodoA* result = consultaABP(root, val, &consult_ops); 
-      if (result == NULL) { log_error("Something went wrong while consulting.\n");}
+      int result = consultaABP(root, val, &consult_ops); 
+      if (result == 0) { log_error("Something went wrong while consulting.\n");}
       long consult_time_curr = (long)(clock() - consult_start) / (CLOCKS_PER_SEC / 1000);
       consult_array[i] = consult_time_curr;
     }

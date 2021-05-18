@@ -6,7 +6,7 @@ struct TNodoA{
 
 typedef struct TNodoA pNodoA;
 
-pNodoA* InsereArvore(pNodoA* a, int ch, long* insert_ops);
-pNodoA* consultaABP(pNodoA* a, int chave, long* consult_ops);
+pNodoA* BST_insert_iterative(pNodoA* a, int ch, long* insert_ops);
+int consultaABP(pNodoA* a, int chave, long* consult_ops);
 
 void benchmark_ABP(int* data, int data_size, int is_random);
