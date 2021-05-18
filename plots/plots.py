@@ -56,15 +56,17 @@ lsec_c_o_mapped = np.array(list(map(lambda element: [element[0], element[2], ele
 fig, ax = plt.subplots()
 
 def pre_process(data):
-    return np.array(list(map(lambda x: [x[1], x[2]], data)))
+    return np.array(list(map(lambda x: [x[1]+1, x[2]], data)))
 
-def make_scatter(raw_data, size, color, marker='o'):
+def make_scatter(raw_data, color, marker='o'):
     plot_data = pre_process(raw_data)
     x, y = plot_data.T
 
     sizes = []
     def switch(x):
         return {
+            100: 50,
+            1000: 50,
             5000: 100,
             10000: 200,
             100000: 300
@@ -78,17 +80,17 @@ def make_scatter(raw_data, size, color, marker='o'):
 
 ax.grid(True)
 
-scatter1 = make_scatter(abp_i_r_data, 100,'#D90000', 'v')
-scatter2 = make_scatter(abp_c_r_data, 100,'#D90000', 'o')
+scatter1 = make_scatter(abp_i_r_data,'#D90000', 'v')
+scatter2 = make_scatter(abp_c_r_data,'#D90000', 'o')
 
-scatter3 = make_scatter(abp_c_o_mapped, 100,'#D9A600', 'o')
-scatter4 = make_scatter(abp_i_o_data, 100,'#D9A600', 'v')
+scatter3 = make_scatter(abp_c_o_mapped,'#D9A600', 'o')
+scatter4 = make_scatter(abp_i_o_data,'#D9A600', 'v')
 
-scatter5 = make_scatter(lsec_c_r_data, 100,'#0000D9', 'o')
-scatter6 = make_scatter(lsec_i_r_data, 100,'#0000D9', 'v')
+scatter5 = make_scatter(lsec_c_r_data,'#0000D9', 'o')
+scatter6 = make_scatter(lsec_i_r_data,'#0000D9', 'v')
 
-scatter7 = make_scatter(lsec_c_o_mapped, 100,'#38C229', 'o')
-scatter8 = make_scatter(lsec_i_o_data, 100,'#38C229', 'v')
+scatter7 = make_scatter(lsec_c_o_mapped,'#38C229', 'o')
+scatter8 = make_scatter(lsec_i_o_data,'#38C229', 'v')
 
 ax.set_ylabel('Operations')
 ax.set_xlabel('Time (ms)')
