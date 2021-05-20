@@ -69,7 +69,8 @@ def make_scatter(raw_data, color, marker='o'):
             1000: 50,
             5000: 100,
             10000: 200,
-            100000: 300
+            100000: 300,
+            1000000: 400
         }[x]
     
     for element in raw_data:
@@ -119,6 +120,8 @@ circle_legend = mlines.Line2D([], [], color='#575757', marker='o', linestyle='No
                           markersize=10, label='Consults')
                         
 plt.legend(handles=[arrow_legend, circle_legend], loc="lower right")
+
+plt.title("Todos os dados.")
 
 plt.show()
 
