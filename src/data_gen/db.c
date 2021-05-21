@@ -20,11 +20,13 @@ int* generate_DB(int size, int is_random) {
     };
     printf("\n");
 
-
+    // Not really the most efficient way, but it works well an the code is readable.
     if (is_random) {
         shuffle(integer_array, size);
     };
 
+    // Note: this file is never read from in the program.
+    // This, however, is used for debugging.
     FILE* db = fopen("../logs/database.txt", "w");
     for (int i = 0; i < size; i++) {
         fprintf(db, "%d\n", integer_array[i]);
@@ -35,7 +37,8 @@ int* generate_DB(int size, int is_random) {
     return integer_array;
 };  
 
-void shuffle(int *array, size_t n) {    
+void shuffle(int *array, size_t n) { 
+    // RNG for genRand() used later.   
     MTRand r = seedRand(clock());
 
     if (n > 1) 
@@ -43,7 +46,10 @@ void shuffle(int *array, size_t n) {
         size_t i;
         for (i = 0; i < n - 1; i++) 
         {
+          // Generate a random number j such that i < j < n.
+          // genRand() comes from mtwister.h. Generates a random float between 0 and 1.
           size_t j = i + (int)(genRand(&r) * (n - i));
+          // Swap them using a temp variable.
           int t = array[j];
           array[j] = array[i];
           array[i] = t;

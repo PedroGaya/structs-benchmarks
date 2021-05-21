@@ -37,7 +37,9 @@ ptLSE* insert_ptLSE(int input, LSE* list, long* ops_counter)
          list->size++;
          return list->start;
        }
-       
+
+
+       // Because we are a circular list, inserting into the end of the list is O(1) if this is done.
        novo->prox = list->start;
        novo->ant = list->start->ant;
        list->start->ant->prox = novo;
@@ -150,6 +152,8 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
     }
   }
 
+  // We read consult_array[i], then write the resulting consult_time to consult_array[i]
+  // for posterior use.
   for (int i = 0; i < 5; i++) {
     long val = consult_array[i];
 
@@ -161,6 +165,9 @@ void benchmark_LSE(int* data, int data_size, int is_random) {
     }
   }
 
+  // Different logging behavior is required due to the way that ordered consults are measured.
+  // If random consult, we consult 5 random numbers and take the mean.
+  // Otherwise, we have three different times and dont take the mean.
   long consult_time = 0;
   if (is_random) {
     for (int i = 0; i < 5; i++) {

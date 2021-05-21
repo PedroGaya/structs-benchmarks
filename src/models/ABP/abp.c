@@ -14,6 +14,9 @@ pNodoA* create_node(int data) {
 
 pNodoA* InsereArvore(pNodoA *a, int ch, long* insert_ops)
 {
+  // Recursive insert done in class. Overflow on large data_sets.
+  // On Windows 10, it overflowed when inserting 43k~ ordered numbers.
+  // Works well on random numbers.
      if (a == NULL)
      { 
          *insert_ops += 1;
@@ -36,6 +39,7 @@ pNodoA* InsereArvore(pNodoA *a, int ch, long* insert_ops)
 }
 
 pNodoA* BST_insert_iterative(pNodoA* root, int data, long* insert_ops) {
+  // Simple iterative algo for inserting into BST.
     pNodoA **pp = &root;
 
     while (*pp != NULL) {
@@ -71,6 +75,8 @@ int consultaABP(pNodoA *a, int chave, long* consult_ops) {
 
 void benchmark_ABP(int* data, int data_size, int is_random) {
   pNodoA* root = NULL;
+
+  // First, we create the tree and insert our whole data set.
 
   long insert_ops = 0;
   clock_t insert_start = clock();
@@ -115,6 +121,8 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
     }
   }
 
+  // We read consult_array[i], then write the resulting consult_time to consult_array[i]
+  // for posterior use.
   for (int i = 0; i < 5; i++) {
     long val = consult_array[i];
     if (val != 0) {
@@ -125,7 +133,10 @@ void benchmark_ABP(int* data, int data_size, int is_random) {
       consult_array[i] = consult_time_curr;
     }
   }
-
+    
+  // Different logging behavior is required due to the way that ordered consults are measured.
+  // If random consult, we consult 5 random numbers and take the mean.
+  // Otherwise, we have three different times and dont take the mean.
   long consult_time = 0;
   if (is_random) {
     for (int i = 0; i < 5; i++) {
