@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "liblog.a"
+			"path" : "librandom.a"
 		}
 	],
 	"backtrace" : 1,
@@ -25,7 +25,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 4,
+				"line" : 30,
 				"parent" : 0
 			}
 		]
@@ -46,9 +46,9 @@
 			]
 		}
 	],
-	"id" : "log::@6890427a1f51a3e7e1df",
-	"name" : "log",
-	"nameOnDisk" : "liblog.a",
+	"id" : "random::@6890427a1f51a3e7e1df",
+	"name" : "random",
+	"nameOnDisk" : "librandom.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -62,13 +62,6 @@
 			[
 				0
 			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				1
-			]
 		}
 	],
 	"sources" : 
@@ -76,13 +69,8 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/log/log.c/src/log.c",
+			"path" : "src/data_gen/mtwister/mtwister.c",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/log/log.c/src/log.h",
-			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "STATIC_LIBRARY"

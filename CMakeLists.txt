@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(trabFinal)
 
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 add_library(
     log
     src/log/log.c/src/log.c
