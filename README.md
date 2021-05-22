@@ -18,7 +18,7 @@ Por fim, esse projeto foi feito em Windows 10, mas creio eu que todas as soluç�
 ```
 mkdir TrabalhoFinal && cd TrabalhoFinal
 git clone https://github.com/PedroGaya/structs-benchmarks.git .
-cmake build
+cmake .
 ```
 
 3. O executável está em `./build`, então:
