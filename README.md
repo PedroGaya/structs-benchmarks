@@ -26,9 +26,11 @@ cmake .
 
 Isso criará um banco de dados com 1000 números aleatórios e rodará as benchmarks. Use a opção `-c` para deletar todos os bancos de dados previamente gerados, antes de gerar novos.
 
+IMPORTANTE: Seguir esses passos a risca provavelmente criará erros devido a configurações do CMake. Recomendo fortemente simplesmente clonar apenas src e o arquivo CMakeLists.txt clicando [aqui](https://github.com/PedroGaya/structs-benchmarks-src).
+
 ## Arquivos e pastas
 
-O projeto possui 4 pastas principais, `build/`, `logs/`, `plots/` e `src/`, descritas abaixo. Além disso, possui um arquivo CMake e dados do VSCode (importantes para o CMake. Se você quiser clonar apenas o código fonte e o CMake.txt, clique [aqui](https://github.com/PedroGaya/structs-benchmarks-src).
+O projeto possui 4 pastas principais, `build/`, `logs/`, `plots/` e `src/`, descritas abaixo. Além disso, possui um arquivo CMake e dados do VSCode.
 
 Para compilar na marra, você precisa criar a pasta `logs/` a mão, pois `fopen()` não criará os diretórios necessários.
 
